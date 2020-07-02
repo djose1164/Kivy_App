@@ -1,0 +1,234 @@
+#:kivy 1.11.1
+
+<Label>:
+    size_hint: .8, .2
+    background_color: 0, 0, .5, 1
+    font_color: 1, .2, 0, .8
+    font_size: 30
+
+<TextInput>:
+    size_hint: 1/3, .09
+    multiline: False
+
+<Button>:
+    size_hint: .5, .2
+
+<LoginScreen>:
+    fl_parent: fl_parent
+    fl2_son_1: fl_son_1
+    un: un
+    psd: psd
+    name: "login"
+    FloatLayout:
+        id: fl_parent
+        cols: 1
+        FloatLayout:
+            size: root.width, root.height
+            id: fl_son_1
+            Label:
+                id: lbl_un
+                pos_hint: {"right":.8, "top":.8}
+                text: "Username: "
+            TextInput:
+                id: un
+                pos_hint: {"x":.49, "top":.75}
+                hint_text: "Type your username"
+            Label:
+                id: lbl_psd
+                pos_hint: {"right":.8, "top":.6}
+                text: "Password: "
+            TextInput:
+                id: psd
+                pos_hint: {"x":.49, "top":.55}
+                hint_text: "Type your password"
+            Button:
+                text: "Login"
+                on_release:
+                    root.manager.transition.direction = "left"
+                    root.validate()
+            Button:
+                text: "Sign Up!"
+                on_release:
+                    root.manager.transition.direction = "down"
+                    root.__signup_screen__()
+                pos_hint: {"x":.5}
+
+
+<SignupScreen>:
+    fl2_parent: fl2_parent
+    fl2_son_1: fl2_son_1
+    scroll: scroll
+    namee: namee
+    lastname: lastname
+    age: age
+    birth_date: birth_date
+    country: country
+    username: username
+    password: password
+    name: "sign_up"
+    FloatLayout:
+        id: fl2_parent
+
+        ScrollView:
+            id: scroll
+            size_hint: 1, .9
+            pos_hint: {"top" : 1}
+            do_scroll_x: False
+            do_scroll_y: True
+            GridLayout:
+                id: fl2_son_1
+                cols: 2
+                size_hint_y: None
+                height: self.minimum_height
+                size: root.width, root.height
+                padding: 100, 15
+                spacing: -150, 20
+                Label:
+                    id: lbl_namee
+                    text: "Name: "
+                
+                TextInput:
+                    id: namee
+                    hint_text: "Type your name..."
+                    pos_hint: {"x":.9}
+                
+                Label:
+                    id: lbl_lastname
+                    text: "Last Name: "
+                
+                TextInput:
+                    id: lastname
+                    hint_text: "Type your last name..."
+                
+                Label:
+                    id: lbl_age
+                    text: "Age: "
+                
+                TextInput:
+                    id: age
+                    hint_text: "Type your age..."
+                    pos_hint: {"x":.43, "y":.6}
+                
+                Label:
+                    text: "Birth Date:"
+                
+                TextInput:
+                    id: birth_date
+                    hint_text: "Type your birth date..."
+                
+                Label:
+                    text: "Country:"
+                
+                TextInput:
+                    id: country
+                    hint_text: "Type your country..."
+                
+                Label:
+                    text: "Username:"
+                
+                TextInput:
+                    id: username
+                    hint_text: "Type your username..."
+                
+                Label:
+                    text: "Password:"
+                
+                TextInput:
+                    id: password
+                    hint_text: "Type your password..."
+                
+        Button:
+            text: "Submit"
+            pos_hint: {"center_x":.5}
+            size_hint: 1, .1
+            on_release:
+                root.manager.transition.direction = "right"
+                root.__submit__()
+
+
+<InfoScreen>:
+    fl3_parent: fl3_parent
+    fl3_son_1: fl3_son_1
+    lbl_id: lbl_id
+    lbl_name: lbl_name
+    lbl_lastname: lbl_lastname
+    lbl_age: lbl_age
+    lbl_birth_date: lbl_birth_date
+    lbl_country: lbl_country
+    lbl_username: lbl_username
+    lbl_password: lbl_password
+    lbl_date: lbl_date
+    name: "info"
+    FloatLayout:
+        id: fl3_parent
+        Label:
+            size_hint: 1, .1
+            text: "Info Screen"
+            font_size: 40
+            pos_hint: {"center_x":.5, "center_y":.95}
+        ScrollView:
+            size_hint: 1, .9
+            do_scroll_x: False
+            GridLayout:
+                size: root.width, root.height
+                size_hint_y: None
+                height: self.minimum_height
+                id: fl3_son_1
+                cols: 2
+                Label:
+                    text: "ID"
+                Label:
+                    id: lbl_id
+                    text: ""
+                Label:
+                    text: "Name:"
+                Label:
+                    id: lbl_name
+                    text: "sdfdsa"
+                Label:
+                    text: "Last name:"
+                Label:
+                    id: lbl_lastname
+                    text: "dsaf"
+                Label:
+                    text: "Age:"
+                Label:
+                    id: lbl_age
+                    text: ""
+                Label:
+                    text: "Birth date"
+                Label:
+                    id: lbl_birth_date
+                    text: ""
+                Label:
+                    text: "Country:"
+                Label:
+                    id: lbl_country
+                    text: ""
+                Label:
+                    text: "Username:"
+                Label:
+                    id: lbl_username
+                    text: ""
+                Label:
+                    text: "Password:"
+                Label:
+                    id: lbl_password
+                    text: ""
+                Label:
+                    text: "Date:"
+                Label:
+                    id: lbl_date
+        
+        Button:
+            text: "Quit!"
+            size_hint: .5, .09
+            on_release:
+                on_press: app.stop()
+        Button:
+            text: "Go back!"
+            size_hint: .5, .09
+            pos_hint: {"x":.5}
+            on_release:
+                root.manager.transition.direction = "up"
+                root. __go_login__()
